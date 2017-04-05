@@ -274,7 +274,7 @@ map_coords
 
   >>> import geojson
 
-  >>> new_point = geojson.utils.map_coords(lambda x: x/2, geojson.Point((-115.81, 37.24)))
+  >>> new_point = geojson.utils.map_coords(lambda x: tuple(y/2 for y in x), geojson.Point((-115.81, 37.24)))
 
   >>> geojson.dumps(new_point, sort_keys=True)  # doctest: +ELLIPSIS
   '{"coordinates": [-57.905..., 18.62...], "type": "Point"}'

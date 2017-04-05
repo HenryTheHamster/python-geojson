@@ -42,16 +42,16 @@ def map_coords(func, obj):
     """
 
     if obj['type'] == 'Point':
-        coordinates = tuple(map(func, obj['coordinates']))
+        coordinates = tuple(func(obj['coordinates']))
     elif obj['type'] in ['LineString', 'MultiPoint']:
-        coordinates = [tuple(map(func, c)) for c in obj['coordinates']]
+        coordinates = [tuple(func(c)) for c in obj['coordinates']]
     elif obj['type'] in ['MultiLineString', 'Polygon']:
         coordinates = [[
-            tuple(map(func, c)) for c in curve]
+            tuple(func(c)) for c in curve]
             for curve in obj['coordinates']]
     elif obj['type'] == 'MultiPolygon':
         coordinates = [[[
-            tuple(map(func, c)) for c in curve]
+            tuple(func(c)) for c in curve]
             for curve in part]
             for part in obj['coordinates']]
     else:
